@@ -47,3 +47,20 @@ void p4(bool key[4]){
     }
 }
 
+// Perform and Xor between outArray and xorArray and store the 
+// result in outArray.
+void exclusiveOr(bool* outArray, bool* xorArray, int arraySize){
+    for(int i = 0; i < arraySize; i++)
+    {
+        outArray[i] = outArray[i] != xorArray[i];
+    }
+}
+
+void leftShift(bool* array, int arraySize){
+    bool firstBit = array[0];
+    for(int i = 0; i < (arraySize - 1); i++)
+    {
+        array[i] = array[i + 1];
+    }
+    array[arraySize - 1] = firstBit;
+}
