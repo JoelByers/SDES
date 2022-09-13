@@ -162,3 +162,16 @@ void sBox(bool data[8], bool output[4]){
         output[i + 2] = rightOut[i];
     }
 }
+
+// Swap the first half of the array
+// with the second, and the second with
+// the first
+void swapHalf(bool data[8]){
+    bool temp;
+
+    for(int i = 0; i < 4; i++){
+        temp = data[i];
+        data[i] = data[i + 4];
+        data[i + 4] = temp;
+    }
+}
