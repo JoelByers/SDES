@@ -1,4 +1,6 @@
-#include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include <cstring>
 
 using namespace std;
 
@@ -9,6 +11,20 @@ void printUsage(){
     cerr << "       input_file  : inputFile.txt\n";
     cerr << "       output_file : outputFile.txt\n";
     cerr << "       keyFile     : keyfile.txt" << endl;
+}
+
+// Function found here:
+// https://www.geeksforgeeks.org/remove-spaces-from-a-given-string/
+void removeSpaces(char *str){
+    int count = 0;
+ 
+    for (int i = 0; str[i]; i++){
+        if (str[i] != ' '){
+            str[count++] = str[i];
+        }
+    }
+
+    str[count] = '\0';
 }
 
 int main(int argc, char *argv[]){
@@ -45,6 +61,22 @@ int main(int argc, char *argv[]){
     if(argc >= 5){
         keyFile = string(argv[4]);
     }
+
+    // Read data from files
+    ifstream inputFileStream(inputFile);
+    string plainText;
+    string temp;
+    
+    while(getline(inputFileStream, temp)){
+        plainText.append(temp);
+    }
+
+    // String to char* found here
+    // https://www.geeksforgeeks.org/convert-string-char-array-cpp/
+    int textLen = plainText.length();
+    char textAry[textLen + 1];
+    strcpy(textAry, plainText.c_str());
+    removeSpaces(textAry);
 
     return 0;
 }
