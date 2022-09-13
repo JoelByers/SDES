@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include <iostream>
 
-useing namespace std;
+using namespace std;
 int main(){
     cout << "Hello There" << endl;
     return 0;
