@@ -58,6 +58,18 @@ void p4(bool key[4]){
     }
 }
 
+
+void ipinverse(bool key[8]){
+    int newpos[8] = {4,1,3,5,7,2,8,6};
+    bool temp[8];
+    for(int i = 0; i<8; i++){
+        temp[i] = key[newpos[i]-1];
+    }
+    for(int i=0; i<8; i++){
+        key[i] = temp[i];
+    }
+}
+
 // Perform and Xor between outArray and xorArray and store the 
 // result in outArray.
 void exclusiveOr(bool* outArray, bool* xorArray, int arraySize){
