@@ -62,6 +62,7 @@ int main(int argc, char *argv[]){
         keyFile = string(argv[4]);
     }
 
+<<<<<<< HEAD
     // Read data from files
     ifstream inputFileStream(inputFile);
     string plainText;
@@ -78,5 +79,7 @@ int main(int argc, char *argv[]){
     strcpy(textAry, plainText.c_str());
     removeSpaces(textAry);
 
+=======
+>>>>>>> 3ed5d7f... Add command line args parsing
     return 0;
 }
