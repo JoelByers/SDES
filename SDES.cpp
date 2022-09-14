@@ -187,3 +187,23 @@ void swapHalf(bool data[8]){
         data[i + 4] = temp;
     }
 }
+
+void getKeys(bool theKey[10], bool keyOne[8], bool keyTwo[8]){
+    p10(theKey);
+    
+    // save a copy of theKey
+    bool p10Copy[10] = {0,0,0,0,0,0,0,0,0,0};
+    for(int i = 0; i < 10; i++){
+        p10Copy[i] = theKey[i];
+    }
+
+    // get key 1
+    leftShift(theKey, 10);
+    p8(theKey, keyOne);
+
+
+    // get key 2
+    leftShift(p10Copy, 10);
+    leftShift(p10Copy, 10);
+    p8(p10Copy, keyTwo);
+}
