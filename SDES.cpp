@@ -10,6 +10,7 @@ void printBitArray(bool* ary, int arySize){
     cout << endl;
 }
 
+using namespace std;
 void p10(bool key[10]){
     int newpos[10] = {3,5,2,7,4,10,1,9,8,6};
     bool temp[10];
@@ -237,3 +238,25 @@ void fbox(bool input[8], bool key[8]){
 
     printBitArray(input, 8);
 }
+
+//Part of code segment taken from: https://www.educative.io/answers/how-to-convert-a-number-from-decimal-to-binary-in-cpp
+void asciiToBinary(char letter, bool binaryArray[8]){
+    int binary =0;
+    int remainder, product = 1;
+    int decimal = int(letter);
+    for(int i = 0; i<8; i++){
+        binaryArray[i] = 0;
+    }
+    while(decimal != 0){
+        remainder = decimal %2;
+        binary = binary + (remainder * product);
+        decimal = decimal / 2;
+        product *= 10;
+    }
+    string tempstr = to_string(binary);
+    int difference = 8- tempstr.length();
+    for(int i = 0; i<tempstr.length(); i++){
+        binaryArray[i+difference] = int(tempstr[i])-48;
+    }
+}
+
