@@ -86,6 +86,7 @@ int main(int argc, char *argv[]){
     }
     else if(string(argv[1]) == "decrypt"){
         cout << "TODO: Decrypt" << endl;
+        //decrypt(data,key);
     }
     else{
         printUsage();

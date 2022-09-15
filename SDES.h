@@ -2,5 +2,6 @@
 #define _SDES_H
 
 void encrypt(bool data[8], bool key[10]);
+void decrypt(bool data[8], bool key[10]);
 
 #endif
