@@ -277,3 +277,14 @@ void encrypt(bool data[8], bool key[10]){
     fbox(data, keyTwo);
     ipinverse(data);
 }
+
+void decrypt(bool data[8], bool key[10]){
+    bool keyOne[8] = {0,0,0,0,0,0,0,0}; 
+    bool keyTwo[8] = {0,0,0,0,0,0,0,0}; 
+    getKeys(key, keyOne, keyTwo);
+    ip(data);
+    fbox(data, keyTwo);
+    swapHalf(data);
+    fbox(data, keyOne);
+    ipinverse(data);
+}
