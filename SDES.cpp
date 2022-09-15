@@ -89,6 +89,23 @@ void leftShift(bool* array, int arraySize){
     array[arraySize - 1] = firstBit;
 }
 
+void circularShift(bool array[10]){
+    bool aryLeft[5] = {0,0,0,0,0};
+    bool aryRight[5] = {0,0,0,0,0};
+    for(int i = 0; i < 5; i++){
+        aryLeft[i] = array[i];
+        aryRight[i] = array[i+5];
+    }
+
+    leftShift(aryLeft, 5);
+    leftShift(aryRight, 5);
+
+    for(int i = 0; i < 5; i++){
+        array[i] = aryLeft[i];
+        array[i+5] = aryRight[i];
+    }
+}
+
 // Return a short representation of a 2 element bit array
 //
 // function found on this page:
@@ -191,22 +208,14 @@ void swapHalf(bool data[8]){
 
 void getKeys(bool theKey[10], bool keyOne[8], bool keyTwo[8]){
     p10(theKey);
-    
-    // save a copy of theKey
-    bool p10Copy[10] = {0,0,0,0,0,0,0,0,0,0};
-    for(int i = 0; i < 10; i++){
-        p10Copy[i] = theKey[i];
-    }
 
-    // get key 1
-    leftShift(theKey, 10);
+    circularShift(theKey);
     p8(theKey, keyOne);
 
-
     // get key 2
-    leftShift(p10Copy, 10);
-    leftShift(p10Copy, 10);
-    p8(p10Copy, keyTwo);
+    circularShift(theKey);
+    circularShift(theKey);
+    p8(theKey, keyTwo);
 }
 
 // Perform all F-Box operations
@@ -233,10 +242,8 @@ void fbox(bool input[8], bool key[8]){
     exclusiveOr(sBoxOut, leftHalf, 4);
 
     for(int i = 0; i < 4; i++){
-        input[i + 4] = sBoxOut[i];
+        input[i] = sBoxOut[i];
     }
-
-    printBitArray(input, 8);
 }
 
 //Part of code segment taken from: https://www.educative.io/answers/how-to-convert-a-number-from-decimal-to-binary-in-cpp
@@ -260,3 +267,13 @@ void asciiToBinary(char letter, bool binaryArray[8]){
     }
 }
 
+void encrypt(bool data[8], bool key[10]){
+    bool keyOne[8] = {0,0,0,0,0,0,0,0}; 
+    bool keyTwo[8] = {0,0,0,0,0,0,0,0}; 
+    getKeys(key, keyOne, keyTwo);
+    ip(data);
+    fbox(data, keyOne);
+    swapHalf(data);
+    fbox(data, keyTwo);
+    ipinverse(data);
+}

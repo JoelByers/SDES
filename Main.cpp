@@ -48,17 +48,6 @@ int main(int argc, char *argv[]){
         return -1;
     }
 
-    if(string(argv[1]) == "encrypt"){
-        cout << "TODO: Encrypt" << endl;
-    }
-    else if(string(argv[1]) == "decrypt"){
-        cout << "TODO: Decrypt" << endl;
-    }
-    else{
-        printUsage();
-        return -1;
-    }
-
     if(argc >= 3){
         inputFile = string(argv[2]);
     }
@@ -86,6 +75,22 @@ int main(int argc, char *argv[]){
     char textAry[textLen + 1];
     strcpy(textAry, plainText.c_str());
     removeSpaces(textAry);
+
+    // Get sub-keys
+    bool key[10] = {1,1,1,1,1,1,1,1,1,1};
+
+    // Perform Encryption/Decryption
+    if(string(argv[1]) == "encrypt"){
+        cout << "TODO: Encrypt" << endl;
+        //encrypt(data,key);
+    }
+    else if(string(argv[1]) == "decrypt"){
+        cout << "TODO: Decrypt" << endl;
+    }
+    else{
+        printUsage();
+        return -1;
+    }
 
     return 0;
 }
