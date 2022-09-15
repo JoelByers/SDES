@@ -36,6 +36,14 @@ void removeSpaces(char *str){
     str[count] = '\0';
 }
 
+void strToArray(string input, bool *output){
+    int remainder = input.length();
+    for(int i=0;i<10;i++){
+        int tempbool = int(input[i])-48;
+        output[i] = bool(tempbool);
+    }
+}
+
 int main(int argc, char *argv[]){
 
     // Handle command line arguments
@@ -62,18 +70,18 @@ int main(int argc, char *argv[]){
 
     // Read data from files
     ifstream inputFileStream(inputFile);
-    string plainText;
+    string inputData;
     string temp;
     
     while(getline(inputFileStream, temp)){
-        plainText.append(temp);
+        inputData.append(temp);
     }
 
     // String to char* found here
     // https://www.geeksforgeeks.org/convert-string-char-array-cpp/
-    int textLen = plainText.length();
+    int textLen = inputData.length();
     char textAry[textLen + 1];
-    strcpy(textAry, plainText.c_str());
+    strcpy(textAry, inputData.c_str());
     removeSpaces(textAry);
 
     // Get sub-keys
