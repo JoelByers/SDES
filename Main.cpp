@@ -1,8 +1,17 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include "SDES.h"
 
 using namespace std;
+
+void writeToFile(bool encrypted[8]){
+    ofstream outfile;
+    outfile.open("outputFile.txt", ios_base::app);
+    for(int i=0;i<8;i++){
+        outfile << int(encrypted[i]);
+    }
+}
 
 void printUsage(){
     cerr << "Invalid arguments\n";
