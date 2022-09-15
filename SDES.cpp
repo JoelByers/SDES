@@ -207,3 +207,33 @@ void getKeys(bool theKey[10], bool keyOne[8], bool keyTwo[8]){
     leftShift(p10Copy, 10);
     p8(p10Copy, keyTwo);
 }
+
+// Perform all F-Box operations
+//
+//                              key1              Bits 0-3
+//                               |                    |
+//                               v                    v
+//  8 Bits -> Bits 4-7 -> EP -> XOR -> SBox -> P4 -> Xor -> Recombine L and R
+//
+void fbox(bool input[8], bool key[8]){
+    bool rightHalf[4] = {0,0,0,0};
+    bool leftHalf[4] = {0,0,0,0};
+    for(int i = 0; i < 4; i++){
+        rightHalf[i] = input[i + 4];
+        leftHalf[i] = input[i];
+    }
+
+    bool epOut[8] = {0,0,0,0,0,0,0,0};
+    ep(rightHalf, epOut);
+    exclusiveOr(epOut, key, 8);
+    bool sBoxOut[4] = {0,0,0,0};
+    sBox(epOut, sBoxOut);
+    p4(sBoxOut);
+    exclusiveOr(sBoxOut, leftHalf, 4);
+
+    for(int i = 0; i < 4; i++){
+        input[i + 4] = sBoxOut[i];
+    }
+
+    printBitArray(input, 8);
+}
