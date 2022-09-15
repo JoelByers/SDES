@@ -17,9 +17,9 @@ void printUsage(){
     cerr << "Invalid arguments\n";
     cerr << "   Usage: sdes <encrypt|decrypt> [OPTIONAL <input_file> <output_file> <key_file>]\n";
     cerr << "   Defaults:\n";
-    cerr << "       input_file  : inputFile.txt\n";
-    cerr << "       output_file : outputFile.txt\n";
-    cerr << "       keyFile     : keyfile.txt" << endl;
+    cerr << "       input_file  : input.txt\n";
+    cerr << "       output_file : output.txt\n";
+    cerr << "       keyFile     : key.txt" << endl;
 }
 
 // Function found here:
