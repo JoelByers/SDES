@@ -73,6 +73,12 @@ int main(int argc, char *argv[]){
     string inputData;
     string temp;
     
+    ifstream keyFileStream(keyFile);
+    string keystring;
+    bool key[10] = {0,0,0,0,0,0,0,0,0,0};
+    getline(keyFileStream, keystring);
+    strToArray(keystring,key);
+
     while(getline(inputFileStream, temp)){
         inputData.append(temp);
     }
@@ -83,9 +89,6 @@ int main(int argc, char *argv[]){
     char textAry[textLen + 1];
     strcpy(textAry, inputData.c_str());
     removeSpaces(textAry);
-
-    // Get sub-keys
-    bool key[10] = {1,1,1,1,1,1,1,1,1,1};
 
     // Perform Encryption/Decryption
     if(string(argv[1]) == "encrypt"){
