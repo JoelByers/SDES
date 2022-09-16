@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include <bitset>
 
 using namespace std;
 
@@ -265,6 +267,23 @@ void asciiToBinary(char letter, bool binaryArray[8]){
     for(int i = 0; i<tempstr.length(); i++){
         binaryArray[i+difference] = int(tempstr[i])-48;
     }
+}
+
+// Solution found here:
+// https://stackoverflow.com/questions/23344257/convert-a-string-of-binary-into-an-ascii-string-c
+char binaryToAscii(bool binary[8]){
+    string binaryStr = "";
+    for(int i = 0; i < 8; i++){
+        binaryStr.push_back(binary[i] ? '1' : '0');
+    }
+    
+    std::stringstream sstream(binaryStr);
+    std::string output;
+    std::bitset<8> bits;
+    sstream >> bits;
+    char c = char(bits.to_ulong());
+    
+    return c;
 }
 
 void encrypt(bool data[8], bool key[10]){
