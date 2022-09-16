@@ -5,11 +5,12 @@
 
 using namespace std;
 
-void writeToFile(bool encrypted[8]){
+void writeToFile(bool data[8]){
     ofstream outfile;
     outfile.open("outputFile.txt", ios_base::app);
+    outfile << '\n';
     for(int i=0;i<8;i++){
-        outfile << int(encrypted[i]);
+        outfile << int(data[i]);
     }
 }
 
@@ -92,8 +93,14 @@ int main(int argc, char *argv[]){
 
     // Perform Encryption/Decryption
     if(string(argv[1]) == "encrypt"){
-        cout << "TODO: Encrypt" << endl;
-        //encrypt(data,key);
+        cout << "Encrypting..." << endl;
+        bool data[8] = {0,0,0,0,0,0,0,0};
+        for(char c : inputData){
+            asciiToBinary(c, data);
+            encrypt(data,key);
+            writeToFile(data);
+        }
+        cout << "Encryption Complete" << endl;
     }
     else if(string(argv[1]) == "decrypt"){
         cout << "TODO: Decrypt" << endl;
