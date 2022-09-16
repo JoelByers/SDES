@@ -37,10 +37,13 @@ void removeSpaces(char *str){
 }
 
 void strToArray(string input, bool *output){
-    int remainder = input.length();
-    for(int i=0;i<10;i++){
-        int tempbool = int(input[i])-48;
-        output[i] = bool(tempbool);
+    for(int i=0;i<input.length();i++){
+        if(input[i]=='0'){
+            output[i] = 0;
+        }
+        else{
+            output[i] = 1;
+        }
     }
 }
 
@@ -96,8 +99,19 @@ int main(int argc, char *argv[]){
         //encrypt(data,key);
     }
     else if(string(argv[1]) == "decrypt"){
-        cout << "TODO: Decrypt" << endl;
-        //decrypt(data,key);
+        cout << "Decrypting..." << endl;
+        for(int i=0; i<inputData.length();i+=8){
+            string temp;
+            for(int j=0; j<8; j++){
+                temp.push_back(inputData[i+j]);
+            }
+            bool inputDecrypt[8] = {0,0,0,0,0,0,0,0};
+            strToArray(temp,inputDecrypt);
+            decrypt(inputDecrypt,key);
+            writeToFile(inputDecrypt);
+            
+        }
+        cout<<"Decryption complete"<<endl;
     }
     else{
         printUsage();
