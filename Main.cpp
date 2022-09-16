@@ -51,9 +51,9 @@ void strToArray(string input, bool *output){
 int main(int argc, char *argv[]){
 
     // Handle command line arguments
-    string inputFile = "inputFile.txt";
-    string outputFile = "outputFile.txt";
-    string keyFile = "keyFile.txt";
+    string inputFile = "input.txt";
+    string outputFile = "output.txt";
+    string keyFile = "key.txt";
 
     if(argc < 2){
         printUsage();
