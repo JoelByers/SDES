@@ -5,13 +5,19 @@
 
 using namespace std;
 
-void writeToFile(bool data[8], string fileName){
+void writeBitsToFile(bool data[8]){
     ofstream outfile;
     outfile.open(fileName, ios_base::app);
     outfile << '\n';
     for(int i=0;i<8;i++){
         outfile << int(data[i]);
     }
+}
+
+void writeCharToFile(char c){
+    ofstream outfile;
+    outfile.open("outputFile.txt", ios_base::app);
+    outfile << c;   
 }
 
 void printUsage(){
@@ -49,7 +55,6 @@ void strToArray(string input, bool *output){
 }
 
 int main(int argc, char *argv[]){
-
     // Handle command line arguments
     string inputFile = "input.txt";
     string outputFile = "output.txt";
@@ -101,7 +106,7 @@ int main(int argc, char *argv[]){
         for(char c : inputData){
             asciiToBinary(c, data);
             encrypt(data,key);
-            writeToFile(data, outputFile);
+            writeBitsToFile(data);
         }
         cout << "Encryption Complete" << endl;
     }
@@ -115,8 +120,7 @@ int main(int argc, char *argv[]){
             bool inputDecrypt[8] = {0,0,0,0,0,0,0,0};
             strToArray(temp,inputDecrypt);
             decrypt(inputDecrypt,key);
-            writeToFile(inputDecrypt, outputFile);
-            
+            writeCharToFile(binaryToAscii(inputDecrypt));
         }
         cout<<"Decryption complete"<<endl;
     }
