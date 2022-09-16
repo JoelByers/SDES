@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void writeBitsToFile(bool data[8]){
+void writeBitsToFile(bool data[8], string fileName){
     ofstream outfile;
     outfile.open(fileName, ios_base::app);
     outfile << '\n';
@@ -14,9 +14,9 @@ void writeBitsToFile(bool data[8]){
     }
 }
 
-void writeCharToFile(char c){
+void writeCharToFile(char c, string fileName){
     ofstream outfile;
-    outfile.open("outputFile.txt", ios_base::app);
+    outfile.open(fileName, ios_base::app);
     outfile << c;   
 }
 
@@ -106,7 +106,7 @@ int main(int argc, char *argv[]){
         for(char c : inputData){
             asciiToBinary(c, data);
             encrypt(data,key);
-            writeBitsToFile(data);
+            writeBitsToFile(data, outputFile);
         }
         cout << "Encryption Complete" << endl;
     }
@@ -120,7 +120,7 @@ int main(int argc, char *argv[]){
             bool inputDecrypt[8] = {0,0,0,0,0,0,0,0};
             strToArray(temp,inputDecrypt);
             decrypt(inputDecrypt,key);
-            writeCharToFile(binaryToAscii(inputDecrypt));
+            writeCharToFile(binaryToAscii(inputDecrypt), outputFile);
         }
         cout<<"Decryption complete"<<endl;
     }
